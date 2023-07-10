@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="454.0" prefWidth="781.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="librarymanagementsystem.FXMLDocumentController">
+   <children>
+      <Label layoutX="301.0" layoutY="37.0" prefHeight="28.0" prefWidth="179.0" text="Books management" textAlignment="CENTER" textFill="#59a4d6">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Pane fx:id="bookForm" layoutX="14.0" layoutY="134.0" prefHeight="227.0" prefWidth="302.0">
+         <children>
+            <Label layoutX="23.0" layoutY="21.0" prefHeight="17.0" prefWidth="42.0" text="Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bookName" layoutX="103.0" layoutY="19.0" />
+            <TextField fx:id="bookAuthor" layoutX="103.0" layoutY="70.0" />
+            <TextField fx:id="bookPublisher" layoutX="103.0" layoutY="122.0" />
+            <Label layoutX="23.0" layoutY="73.0" prefHeight="20.0" prefWidth="63.0" text="Author">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="125.0" prefHeight="20.0" prefWidth="63.0" text="Publisher">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="174.0" prefHeight="20.0" prefWidth="63.0" text="Release">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="bookRelease" layoutX="101.0" layoutY="172.0" prefHeight="25.0" prefWidth="149.0" />
+         </children>
+      </Pane>
+      <TableView fx:id="bookTable" layoutX="332.0" layoutY="135.0" prefHeight="227.0" prefWidth="426.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="authorColumn" prefWidth="75.0" text="Author" />
+            <TableColumn fx:id="publisherColumn" prefWidth="75.0" text="Publisher" />
+            <TableColumn fx:id="releaseColumn" prefWidth="75.0" text="Release" />
+            <TableColumn fx:id="creaetdOnColumn" prefWidth="75.0" text="Created on" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAdd" layoutX="34.0" layoutY="383.0" mnemonicParsing="false" onAction="#AddBook" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #59a4d6;" text="Add" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnUpdate" layoutX="122.0" layoutY="383.0" mnemonicParsing="false" onAction="#updateBook" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #59a4d6;" text="Update" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDelete" layoutX="222.0" layoutY="383.0" mnemonicParsing="false" onAction="#deleteBook" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #59a4d6;" text="Delete" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
