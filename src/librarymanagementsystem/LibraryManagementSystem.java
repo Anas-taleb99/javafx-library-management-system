@@ -16,13 +16,17 @@ import javafx.stage.Stage;
  * @author AAR8
  */
 public class LibraryManagementSystem extends Application {
-    
+
+    public static User user;
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+//        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("Signup.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+
         Scene scene = new Scene(root);
-        
+
         stage.setScene(scene);
         stage.show();
     }
@@ -33,5 +37,5 @@ public class LibraryManagementSystem extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
