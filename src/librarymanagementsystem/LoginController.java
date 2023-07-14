@@ -5,6 +5,7 @@
  */
 package librarymanagementsystem;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,14 +58,17 @@ public class LoginController implements Initializable {
                         errorLabel.setText("The user name or the password is incorrect !");
                     } else {
                         errorLabel.setText("");
+                        User.getInstance().setId(rs.getInt("id"));
+                        User.getInstance().setName(rs.getString("name"));
+                        User.getInstance().setAddress(rs.getString("address"));
+                        User.getInstance().setRole(rs.getString("role"));
+                        User.getInstance().setNationalNo(rs.getString("nationalNo"));
 
-                        while (rs.next()) {
-                            User.getInstance().setId(rs.getInt("id"));
-                            User.getInstance().setName(rs.getString("name"));
-                            User.getInstance().setAddress(rs.getString("address"));
-                            User.getInstance().setRole(rs.getString("role"));
-                            User.getInstance().setNationalNo(rs.getString("nationalNo"));
+                        try {
+                            LibraryManagementSystem.navigateTo("Borrowing.fxml");
 
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
                         }
                     }
 

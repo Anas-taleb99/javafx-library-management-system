@@ -5,6 +5,7 @@
  */
 package librarymanagementsystem;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,17 +19,33 @@ import javafx.stage.Stage;
 public class LibraryManagementSystem extends Application {
 
     public static User user;
+    public static Stage prevStage;
 
     @Override
     public void start(Stage stage) throws Exception {
 //        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("Signup.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("Borrowing.fxml"));
 
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
+        prevStage = stage;
+
         stage.show();
+    }
+
+    public static void navigateTo(String navigatorPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryManagementSystem.class.getResource(navigatorPath));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        prevStage.close();
+        stage.setScene(scene);
+        stage.show();
+        prevStage = stage;
     }
 
     /**
