@@ -48,6 +48,17 @@ public class LibraryManagementSystem extends Application {
         prevStage = stage;
     }
 
+    public static void newWindow(String navigatorPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(LibraryManagementSystem.class.getResource(navigatorPath));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     /**
      * @param args the command line arguments
      */

@@ -5,6 +5,8 @@
  */
 package librarymanagementsystem;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author AAR8
@@ -17,6 +19,7 @@ public class User {
     private String nationalNo;
     private String role;
     private String address;
+    private LocalDate birthDate;
 
     private User() {
     }
@@ -68,4 +71,11 @@ public class User {
         return this.address;
     }
 
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public LocalDate getBirthDate() {
+        return this.birthDate;
+    }
 }

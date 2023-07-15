@@ -10,9 +10,11 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -39,6 +41,19 @@ public class LoginController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private Hyperlink singUp;
+
+    @FXML
+    void handleSignUp(ActionEvent event) {
+        try {
+            LibraryManagementSystem.navigateTo("Signup.fxml");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -63,9 +78,10 @@ public class LoginController implements Initializable {
                         User.getInstance().setAddress(rs.getString("address"));
                         User.getInstance().setRole(rs.getString("role"));
                         User.getInstance().setNationalNo(rs.getString("nationalNo"));
+                        User.getInstance().setBirthDate(rs.getDate("dateOfBirth").toLocalDate());
 
                         try {
-                            LibraryManagementSystem.navigateTo("Borrowers.fxml");
+                            LibraryManagementSystem.navigateTo("landing.fxml");
 
                         } catch (IOException ex) {
                             ex.printStackTrace();

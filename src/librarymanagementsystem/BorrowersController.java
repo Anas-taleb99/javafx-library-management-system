@@ -64,6 +64,7 @@ public class BorrowersController implements Initializable {
         connector.connect();
         ObservableList<Borrower> borrowers = FXCollections.observableArrayList();
 
+        
         try {
 //            connector.pst = connector.con.prepareStatement("select id, name, author, publisher, releaseDate, createdOn from book");
             connector.pst = connector.con.prepareStatement("SELECT br.id, u.name as userName, bk.name as bookName, borrowAt FROM borrow br inner JOIN user u on userId = br.userId INNER JOIN book bk on bookId = bk.id where u.name like ?");
