@@ -65,7 +65,7 @@ public class LoginController implements Initializable {
                         User.getInstance().setNationalNo(rs.getString("nationalNo"));
 
                         try {
-                            LibraryManagementSystem.navigateTo("Borrowing.fxml");
+                            LibraryManagementSystem.navigateTo("Borrowers.fxml");
 
                         } catch (IOException ex) {
                             ex.printStackTrace();

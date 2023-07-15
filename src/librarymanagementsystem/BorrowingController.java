@@ -89,6 +89,7 @@ public class BorrowingController implements Initializable {
                 alert.setHeaderText("Borrowing A book");
                 alert.setContentText("Borrowed !");
                 alert.showAndWait();
+                table();
 //                        connector.con =
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -105,22 +106,20 @@ public class BorrowingController implements Initializable {
             ObservableList<MyBook> books = FXCollections.observableArrayList();
 
             try {
-                connector.pst = connector.con.prepareStatement("select id, name, author, publisher, releaseDate, createdOn from book where name like ?");
-//                connector.pst.setString(1, content);
+//                connector.pst = connector.con.prepareStatement("select id, name, author, publisher, releaseDate, createdOn from book where name like ?");
+                connector.pst = connector.con.prepareStatement("SELECT bo.id, br.bookId, name, author, publisher, releaseDate, createdOn FROM book bo left outer JOIN borrow br ON bo.id = br.bookId where br.bookId is NULL and name like ?");
+
                 connector.pst.setString(1, "%" + content + "%");
                 ResultSet rs = connector.pst.executeQuery();
 
-                System.out.println("here ?");
                 while (rs.next()) {
                     MyBook book = new MyBook();
-                    System.out.println("here " + rs.getInt("id"));
                     book.id = rs.getInt("id");
                     book.name = rs.getString("name");
                     book.author = rs.getString("author");
                     book.publisher = rs.getString("publisher");
                     book.releaseDate = rs.getDate("releaseDate").toLocalDate();
                     book.createdOn = rs.getDate("createdOn").toLocalDate();
-                    System.out.println("ayooo " + book.createdOn);
 
                     books.add(book);
                 }
@@ -156,19 +155,18 @@ public class BorrowingController implements Initializable {
         ObservableList<MyBook> books = FXCollections.observableArrayList();
 
         try {
-            connector.pst = connector.con.prepareStatement("select id, name, author, publisher, releaseDate, createdOn from book");
+//            connector.pst = connector.con.prepareStatement("select id, name, author, publisher, releaseDate, createdOn from book");
+            connector.pst = connector.con.prepareStatement("SELECT bo.id, br.bookId, name, author, publisher, releaseDate, createdOn FROM book bo left outer JOIN borrow br ON bo.id = br.bookId where br.bookId is NULL");
+
             ResultSet rs = connector.pst.executeQuery();
-            System.out.println("here ?");
             while (rs.next()) {
                 MyBook book = new MyBook();
-                System.out.println("here " + rs.getInt("id"));
                 book.id = rs.getInt("id");
                 book.name = rs.getString("name");
                 book.author = rs.getString("author");
                 book.publisher = rs.getString("publisher");
                 book.releaseDate = rs.getDate("releaseDate").toLocalDate();
                 book.createdOn = rs.getDate("createdOn").toLocalDate();
-                System.out.println("ayooo " + book.createdOn);
 
                 books.add(book);
             }
@@ -184,7 +182,6 @@ public class BorrowingController implements Initializable {
             ex.printStackTrace();
         }
 
-        System.out.println("arrrarn");
 
         bookTable.setRowFactory(tv -> {
             TableRow<MyBook> myRow = new TableRow<>();
